@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>English7VPR — Грамматика</title>
+  <title>English7VPR — Письмо</title>
 
   <style>
     * {
@@ -40,7 +40,7 @@
     }
 
     .main {
-      max-width: 920px;
+      max-width: 980px;
       margin: 0 auto;
       padding: 45px 20px 80px;
       position: relative;
@@ -53,7 +53,7 @@
       justify-content: space-between;
       align-items: center;
       gap: 20px;
-      margin-bottom: 45px;
+      margin-bottom: 55px;
     }
 
     .back-link {
@@ -73,23 +73,30 @@
       letter-spacing: 0.4px;
     }
 
+    .subtitle {
+      margin: -30px auto 55px;
+      max-width: 680px;
+      font-size: 18px;
+      line-height: 1.5;
+      color: #3e5964;
+    }
+
     .variants {
       display: grid;
-      grid-template-columns: repeat(3, 220px);
-      gap: 70px 90px;
+      grid-template-columns: repeat(2, 260px);
+      gap: 34px 80px;
       justify-content: center;
-      margin-top: 80px;
     }
 
     .variant-button {
-      height: 48px;
+      height: 54px;
       display: flex;
       align-items: center;
       justify-content: center;
 
       text-decoration: none;
       color: #2e3a40;
-      font-size: 21px;
+      font-size: 20px;
       font-weight: 400;
       text-transform: uppercase;
 
@@ -111,10 +118,6 @@
     .variant-button:hover {
       background: #a7b8bf;
       transform: translateY(-2px);
-    }
-
-    .variant-button:nth-child(10) {
-      grid-column: 2;
     }
 
     .decor-arrow {
@@ -145,34 +148,24 @@
       opacity: 0.6;
     }
 
-    @media (max-width: 850px) {
-      .variants {
-        grid-template-columns: repeat(2, 220px);
-        gap: 45px;
-        margin-top: 55px;
-      }
-
-      .variant-button:nth-child(10) {
-        grid-column: auto;
-      }
-    }
-
-    @media (max-width: 560px) {
-      .main {
-        padding-top: 34px;
-      }
-
+    @media (max-width: 720px) {
       .top-line {
         flex-direction: column;
+        margin-bottom: 45px;
       }
 
       h1 {
         font-size: 25px;
       }
 
+      .subtitle {
+        margin-bottom: 40px;
+        font-size: 16px;
+      }
+
       .variants {
-        grid-template-columns: 220px;
-        gap: 32px;
+        grid-template-columns: 260px;
+        gap: 26px;
       }
 
       .decor-arrow,
@@ -191,25 +184,31 @@
 
     <main class="main">
       <div class="top-line">
-        <a href="../index.html" class="back-link">← На главную</a>
+        <a href="index.html" class="back-link">← На главную</a>
         <h1>Письмо</h1>
         <span></span>
       </div>
 
+      <p class="subtitle">
+        Выберите вариант. В каждом задании нужно написать ответ на письмо.
+        После завершения появятся чек-лист и примерный ответ.
+      </p>
+
       <div class="variants">
-        <a href="grammar-1.html" class="variant-button">Вариант 1</a>
-        <a href="grammar-2.html" class="variant-button">Вариант 2</a>
-        <a href="grammar-3.html" class="variant-button">Вариант 3</a>
+        <a href="writing-1.html" class="variant-button">Вариант 1</a>
+        <a href="writing-2.html" class="variant-button">Вариант 2</a>
 
-        <a href="grammar-4.html" class="variant-button">Вариант 4</a>
-        <a href="grammar-5.html" class="variant-button">Вариант 5</a>
-        <a href="grammar-6.html" class="variant-button">Вариант 6</a>
+        <a href="writing-3.html" class="variant-button">Вариант 3</a>
+        <a href="writing-4.html" class="variant-button">Вариант 4</a>
 
-        <a href="grammar-7.html" class="variant-button">Вариант 7</a>
-        <a href="grammar-8.html" class="variant-button">Вариант 8</a>
-        <a href="grammar-9.html" class="variant-button">Вариант 9</a>
+        <a href="writing-5.html" class="variant-button">Вариант 5</a>
+        <a href="writing-6.html" class="variant-button">Вариант 6</a>
 
-        <a href="grammar-10.html" class="variant-button">Вариант 10</a>
+        <a href="writing-7.html" class="variant-button">Вариант 7</a>
+        <a href="writing-8.html" class="variant-button">Вариант 8</a>
+
+        <a href="writing-9.html" class="variant-button">Вариант 9</a>
+        <a href="writing-10.html" class="variant-button">Вариант 10</a>
       </div>
     </main>
 
