@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>English7VPR — Выбор задания</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      background: #eeeeee;
+      color: #2b2b2b;
+      overflow-x: hidden;
+    }
+
+    .page {
+      min-height: 100vh;
+      position: relative;
+      border-top: 3px solid #b7c9d0;
+      border-bottom: 3px solid #b7c9d0;
+      background: #eeeeee;
+    }
+
+    header {
+      height: 34px;
+      display: flex;
+      align-items: center;
+      padding-left: 10px;
+      font-size: 14px;
+      color: #1f2c33;
+      background: linear-gradient(#eeeeee, #e5e5e5);
+      border-bottom: 1px solid #b7c9d0;
+    }
+
+    main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 42px 20px 80px;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    h1 {
+      margin: 0 0 115px;
+      font-size: 26px;
+      font-weight: 400;
+      letter-spacing: 0.5px;
+    }
+
+    .variants {
+      display: grid;
+      grid-template-columns: repeat(3, 220px);
+      gap: 92px 90px;
+      justify-content: center;
+    }
+
+    .variant-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 48px;
+      text-decoration: none;
+      color: #2e3a40;
+      font-size: 21px;
+      font-weight: 400;
+      text-transform: uppercase;
+      background: #b7c4ca;
+      border: 1.5px solid #111;
+      clip-path: polygon(
+        8% 0,
+        92% 0,
+        100% 50%,
+        92% 100%,
+        8% 100%,
+        0 50%
+      );
+      transition: 0.2s;
+    }
+
+    .variant-button:hover {
+      background: #a7b8bf;
+      transform: translateY(-2px);
+    }
+
+    .decor-right {
+      position: absolute;
+      right: -85px;
+      top: 108px;
+      width: 145px;
+      height: 190px;
+      border: 1px solid #607985;
+      border-radius: 50% 0 0 50%;
+      background: transparent;
+    }
+
+    .decor-left {
+      position: absolute;
+      left: -75px;
+      bottom: 33px;
+      width: 170px;
+      height: 170px;
+      border: 1px solid #607985;
+      border-radius: 50%;
+      background: transparent;
+    }
+
+    .decor-left::after {
+      content: "";
+      position: absolute;
+      right: -5px;
+      bottom: 10px;
+      width: 90px;
+      height: 55px;
+      background: #eeeeee;
+      border-top: 1px solid #607985;
+      transform: rotate(-15deg);
+    }
+
+    @media (max-width: 850px) {
+      h1 {
+        margin-bottom: 60px;
+      }
+
+      .variants {
+        grid-template-columns: repeat(2, 220px);
+        gap: 45px 45px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      main {
+        padding-top: 35px;
+      }
+
+      h1 {
+        font-size: 24px;
+      }
+
+      .variants {
+        grid-template-columns: 220px;
+        gap: 32px;
+      }
+
+      .decor-right,
+      .decor-left {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <header>
+      English7VPR
+    </header>
+
+    <main>
+      <h1>Выбери задание</h1>
+
+      <div class="variants">
+        <a href="variant1.html" class="variant-button">Вариант 1</a>
+        <a href="variant2.html" class="variant-button">Вариант 2</a>
+        <a href="variant3.html" class="variant-button">Вариант 3</a>
+
+        <a href="variant4.html" class="variant-button">Вариант 4</a>
+        <a href="variant5.html" class="variant-button">Вариант 5</a>
+        <a href="variant6.html" class="variant-button">Вариант 6</a>
+
+        <a href="variant7.html" class="variant-button">Вариант 7</a>
+        <a href="variant8.html" class="variant-button">Вариант 8</a>
+        <a href="variant9.html" class="variant-button">Вариант 9</a>
+      </div>
+    </main>
+
+    <div class="decor-right"></div>
+    <div class="decor-left"></div>
+  </div>
+</body>
+</html>
