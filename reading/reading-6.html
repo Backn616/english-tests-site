@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>English7VPR — Чтение. Вариант 6</title>
+
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      background: #e9e9e9;
+      color: #2b2b2b;
+    }
+
+    .page {
+      min-height: 100vh;
+      background: #e9e9e9;
+      border-top: 2px solid #b7c9d0;
+      border-bottom: 2px solid #b7c9d0;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    .header {
+      height: 36px;
+      display: flex;
+      align-items: center;
+      padding-left: 10px;
+      font-size: 14px;
+      color: #1f2c33;
+      background: linear-gradient(#eeeeee, #dedede);
+      border-bottom: 2px solid #b7c9d0;
+    }
+
+    .main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 45px 20px 80px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .top-line {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 35px;
+    }
+
+    .back-link {
+      color: #2e3a40;
+      text-decoration: none;
+      font-size: 15px;
+    }
+
+    .back-link:hover { text-decoration: underline; }
+
+    h1 {
+      margin: 0;
+      font-size: 27px;
+      font-weight: 400;
+      text-align: center;
+    }
+
+    .task-card {
+      background: #f2f2f2;
+      border: 1px solid #b7c9d0;
+      padding: 30px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+    }
+
+    .task-title {
+      margin: 0 0 18px;
+      font-size: 24px;
+      font-weight: 400;
+      text-align: center;
+    }
+
+    .instruction {
+      margin: 0 0 28px;
+      text-align: center;
+      font-size: 18px;
+      line-height: 1.45;
+    }
+
+    .letter-box {
+      background: #ffffff;
+      border: 1px solid #c8d3d8;
+      padding: 24px;
+      font-size: 18px;
+      line-height: 1.65;
+      margin-bottom: 30px;
+      white-space: pre-line;
+    }
+
+    .question-block {
+      border-top: 1px solid #d2dce0;
+      padding-top: 20px;
+      margin-top: 20px;
+    }
+
+    .question-title {
+      margin-bottom: 12px;
+      font-size: 18px;
+      font-weight: 700;
+      color: #2e3a40;
+    }
+
+    .options {
+      display: grid;
+      gap: 10px;
+    }
+
+    .option {
+      min-height: 42px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 12px;
+      background: #ffffff;
+      border: 1px solid #c8d3d8;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.15s;
+    }
+
+    .option:hover { background: #e7eef1; }
+    .option input { cursor: pointer; }
+
+    .option.correct {
+      background: #dff0df;
+      border-color: #5f9b5f;
+    }
+
+    .option.wrong {
+      background: #f1dcdc;
+      border-color: #b86a6a;
+    }
+
+    .option.missed-correct {
+      background: #fff3c4;
+      border-color: #c8a735;
+    }
+
+    .finish-area {
+      display: flex;
+      justify-content: center;
+      margin-top: 36px;
+    }
+
+    .finish-button {
+      min-width: 230px;
+      height: 50px;
+      border: none;
+      background: #777777;
+      color: #ffffff;
+      font-size: 17px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .finish-button:hover { background: #666666; }
+    .finish-button:disabled { background: #999999; cursor: default; }
+
+    .result {
+      display: none;
+      margin-top: 30px;
+      padding: 24px;
+      background: #f2f2f2;
+      border: 1px solid #b7c9d0;
+      text-align: center;
+    }
+
+    .result.show { display: block; }
+
+    .result h2 {
+      margin: 0 0 12px;
+      font-size: 24px;
+      font-weight: 400;
+    }
+
+    .score {
+      margin-bottom: 16px;
+      font-size: 22px;
+    }
+
+    .answers-key {
+      font-size: 17px;
+      line-height: 1.6;
+    }
+
+    .decor-arrow {
+      position: absolute;
+      top: 76px;
+      left: -3px;
+      width: 145px;
+      height: 50px;
+      border: 1px solid #8aa2ad;
+      opacity: 0.8;
+      clip-path: polygon(0 0, 82% 0, 100% 50%, 82% 100%, 0 100%);
+    }
+
+    .decor-circle {
+      position: absolute;
+      right: -90px;
+      bottom: 70px;
+      width: 180px;
+      height: 180px;
+      border: 1px solid #607985;
+      border-radius: 50%;
+      opacity: 0.6;
+    }
+
+    @media (max-width: 720px) {
+      .main { padding-top: 32px; }
+      .top-line { flex-direction: column; }
+      h1 { font-size: 24px; }
+      .task-card { padding: 22px 18px; }
+      .letter-box { font-size: 16px; padding: 20px; }
+      .decor-arrow, .decor-circle { display: none; }
+    }
+</style>
+</head>
+
+<body>
+  <div class="page">
+    <header class="header">English7VPR</header>
+
+    <main class="main">
+      <div class="top-line">
+        <a href="reading.html" class="back-link">← Назад к вариантам</a>
+        <h1>Чтение. Вариант 6</h1>
+        <a href="index.html" class="back-link">На главную</a>
+      </div>
+
+      <section class="task-card">
+        <h2 class="task-title">Egypt</h2>
+
+        <p class="instruction">
+          Прочитайте текст. Для каждого предложения 1–5 выберите один правильный вариант ответа A, B или C.
+        </p>
+
+        <div class="letter-box">Hello Emma,
+
+I&#x27;m having an amazing adventure in Egypt! It&#x27;s so different from Europe. I&#x27;m travelling with a group of people from my university. We flew into Cairo, a huge and chaotic city. Our hotel is right next to the Nile River. From my window, I can see feluccas (traditional boats) sailing on the water.
+
+Of course, the main reason we came here is to see the ancient monuments. Yesterday we visited the Giza Plateau. Seeing the Pyramids with my own eyes was a dream come true. They are absolutely massive. We couldn&#x27;t believe that people built them so long ago without modern machines. We also saw the Sphinx, which guards the pyramids. We took a camel ride in the desert, which was a bit bumpy but fun!
+
+The heat is intense. It&#x27;s over 40 degrees Celsius every day. We have to drink a lot of water and wear hats all the time. In the afternoons, when it&#x27;s the hottest, we usually rest or visit the air-conditioned museum in Cairo. There, we saw the treasures of King Tutankhamun, including his famous golden mask. It&#x27;s beautiful and made of solid gold.
+
+Next week, we are going on a cruise down the Nile for a few days. We will stop at different temples along the way. I&#x27;m most excited to see the temples at Luxor. I&#x27;ll take lots of pictures for you! I hope you are having a good holiday too.
+
+Take care,
+Laura</div>
+
+        
+        <div class="question-block">
+          <div class="question-title">1. Where is Laura&#x27;s hotel located?</div>
+          <div class="options">
+            
+            <label class="option" data-question="q1" data-option="A">
+              <input type="radio" name="q1" value="A"> A) Near the Giza Plateau.
+            </label>
+            <label class="option" data-question="q1" data-option="B">
+              <input type="radio" name="q1" value="B"> B) Next to the Nile River.
+            </label>
+            <label class="option" data-question="q1" data-option="C">
+              <input type="radio" name="q1" value="C"> C) In the desert.
+            </label>
+          </div>
+        </div>
+        <div class="question-block">
+          <div class="question-title">2. How did Laura and her group travel in the desert?</div>
+          <div class="options">
+            
+            <label class="option" data-question="q2" data-option="A">
+              <input type="radio" name="q2" value="A"> A) By jeep.
+            </label>
+            <label class="option" data-question="q2" data-option="B">
+              <input type="radio" name="q2" value="B"> B) On foot.
+            </label>
+            <label class="option" data-question="q2" data-option="C">
+              <input type="radio" name="q2" value="C"> C) By camel.
+            </label>
+          </div>
+        </div>
+        <div class="question-block">
+          <div class="question-title">3. What did Laura see in the museum in Cairo?</div>
+          <div class="options">
+            
+            <label class="option" data-question="q3" data-option="A">
+              <input type="radio" name="q3" value="A"> A) Ancient boats.
+            </label>
+            <label class="option" data-question="q3" data-option="B">
+              <input type="radio" name="q3" value="B"> B) The golden mask of King Tutankhamun.
+            </label>
+            <label class="option" data-question="q3" data-option="C">
+              <input type="radio" name="q3" value="C"> C) The Sphinx.
+            </label>
+          </div>
+        </div>
+        <div class="question-block">
+          <div class="question-title">4. What is the weather like in Egypt?</div>
+          <div class="options">
+            
+            <label class="option" data-question="q4" data-option="A">
+              <input type="radio" name="q4" value="A"> A) Hot and rainy.
+            </label>
+            <label class="option" data-question="q4" data-option="B">
+              <input type="radio" name="q4" value="B"> B) Intensely hot and sunny.
+            </label>
+            <label class="option" data-question="q4" data-option="C">
+              <input type="radio" name="q4" value="C"> C) Warm and windy.
+            </label>
+          </div>
+        </div>
+        <div class="question-block">
+          <div class="question-title">5. What are Laura&#x27;s plans for next week?</div>
+          <div class="options">
+            
+            <label class="option" data-question="q5" data-option="A">
+              <input type="radio" name="q5" value="A"> A) To go on a cruise down the Nile.
+            </label>
+            <label class="option" data-question="q5" data-option="B">
+              <input type="radio" name="q5" value="B"> B) To visit the museum again.
+            </label>
+            <label class="option" data-question="q5" data-option="C">
+              <input type="radio" name="q5" value="C"> C) To fly back home.
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <div class="finish-area">
+        <button class="finish-button" id="finishBtn">Завершить</button>
+      </div>
+
+      <div class="result" id="resultBox">
+        <h2>Результат</h2>
+        <div class="score" id="scoreText"></div>
+        <div class="answers-key">
+          Правильные ответы: <strong>1-B, 2-C, 3-B, 4-B, 5-A</strong>
+        </div>
+      </div>
+    </main>
+
+    <div class="decor-arrow"></div>
+    <div class="decor-circle"></div>
+  </div>
+
+  <script>
+    const correctAnswers = {
+      q1: "B",
+      q2: "C",
+      q3: "B",
+      q4: "B",
+      q5: "A"
+    };
+
+    const finishBtn = document.getElementById("finishBtn");
+    const resultBox = document.getElementById("resultBox");
+    const scoreText = document.getElementById("scoreText");
+
+    finishBtn.addEventListener("click", function () {
+      let score = 0;
+      const total = Object.keys(correctAnswers).length;
+
+      document.querySelectorAll(".option").forEach(function (option) {
+        option.classList.remove("correct", "wrong", "missed-correct");
+      });
+
+      for (let question in correctAnswers) {
+        const correctValue = correctAnswers[question];
+        const selectedInput = document.querySelector(`input[name="${question}"]:checked`);
+
+        const correctLabel = document.querySelector(
+          `.option[data-question="${question}"][data-option="${correctValue}"]`
+        );
+
+        if (selectedInput) {
+          const selectedLabel = selectedInput.closest(".option");
+
+          if (selectedInput.value === correctValue) {
+            score++;
+            selectedLabel.classList.add("correct");
+          } else {
+            selectedLabel.classList.add("wrong");
+            correctLabel.classList.add("missed-correct");
+          }
+        } else {
+          correctLabel.classList.add("missed-correct");
+        }
+      }
+
+      scoreText.textContent = `Ваш результат: ${score} из ${total}`;
+
+      resultBox.classList.add("show");
+      finishBtn.textContent = "Проверено";
+      finishBtn.disabled = true;
+
+      document.querySelectorAll("input").forEach(function (input) {
+        input.disabled = true;
+      });
+
+      resultBox.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+      });
+    });
+  </script>
+</body>
+</html>

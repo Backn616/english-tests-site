@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>English7VPR — Чтение. Вариант 2</title>
+
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      background: #e9e9e9;
+      color: #2b2b2b;
+    }
+
+    .page {
+      min-height: 100vh;
+      background: #e9e9e9;
+      border-top: 2px solid #b7c9d0;
+      border-bottom: 2px solid #b7c9d0;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    .header {
+      height: 36px;
+      display: flex;
+      align-items: center;
+      padding-left: 10px;
+      font-size: 14px;
+      color: #1f2c33;
+      background: linear-gradient(#eeeeee, #dedede);
+      border-bottom: 2px solid #b7c9d0;
+    }
+
+    .main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 45px 20px 80px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .top-line {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 35px;
+    }
+
+    .back-link {
+      color: #2e3a40;
+      text-decoration: none;
+      font-size: 15px;
+    }
+
+    .back-link:hover { text-decoration: underline; }
+
+    h1 {
+      margin: 0;
+      font-size: 27px;
+      font-weight: 400;
+      text-align: center;
+    }
+
+    .task-card {
+      background: #f2f2f2;
+      border: 1px solid #b7c9d0;
+      padding: 30px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+    }
+
+    .task-title {
+      margin: 0 0 18px;
+      font-size: 24px;
+      font-weight: 400;
+      text-align: center;
+    }
+
+    .instruction {
+      margin: 0 0 28px;
+      text-align: center;
+      font-size: 18px;
+      line-height: 1.45;
+    }
+
+    .letter-box {
+      background: #ffffff;
+      border: 1px solid #c8d3d8;
+      padding: 24px;
+      font-size: 18px;
+      line-height: 1.65;
+      margin-bottom: 30px;
+      white-space: pre-line;
+    }
+
+    .question-block {
+      border-top: 1px solid #d2dce0;
+      padding-top: 20px;
+      margin-top: 20px;
+    }
+
+    .question-title {
+      margin-bottom: 12px;
+      font-size: 18px;
+      font-weight: 700;
+      color: #2e3a40;
+    }
+
+    .options {
+      display: grid;
+      gap: 10px;
+    }
+
+    .option {
+      min-height: 42px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 12px;
+      background: #ffffff;
+      border: 1px solid #c8d3d8;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.15s;
+    }
+
+    .option:hover { background: #e7eef1; }
+    .option input { cursor: pointer; }
+
+    .option.correct {
+      background: #dff0df;
+      border-color: #5f9b5f;
+    }
+
+    .option.wrong {
+      background: #f1dcdc;
+      border-color: #b86a6a;
+    }
+
+    .option.missed-correct {
+      background: #fff3c4;
+      border-color: #c8a735;
+    }
+
+    .finish-area {
+      display: flex;
+      justify-content: center;
+      margin-top: 36px;
+    }
+
+    .finish-button {
+      min-width: 230px;
+      height: 50px;
+      border: none;
+      background: #777777;
+      color: #ffffff;
+      font-size: 17px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .finish-button:hover { background: #666666; }
+    .finish-button:disabled { background: #999999; cursor: default; }
+
+    .result {
+      display: none;
+      margin-top: 30px;
+      padding: 24px;
+      background: #f2f2f2;
+      border: 1px solid #b7c9d0;
+      text-align: center;
+    }
+
+    .result.show { display: block; }
+
+    .result h2 {
+      margin: 0 0 12px;
+      font-size: 24px;
+      font-weight: 400;
+    }
+
+    .score {
+      margin-bottom: 16px;
+      font-size: 22px;
+    }
+
+    .answers-key {
+      font-size: 17px;
+      line-height: 1.6;
+    }
+
+    .decor-arrow {
+      position: absolute;
+      top: 76px;
+      left: -3px;
+      width: 145px;
+      height: 50px;
+      border: 1px solid #8aa2ad;
+      opacity: 0.8;
+      clip-path: polygon(0 0, 82% 0, 100% 50%, 82% 100%, 0 100%);
+    }
+
+    .decor-circle {
+      position: absolute;
+      right: -90px;
+      bottom: 70px;
+      width: 180px;
+      height: 180px;
+      border: 1px solid #607985;
+      border-radius: 50%;
+      opacity: 0.6;
+    }
+
+    @media (max-width: 720px) {
+      .main { padding-top: 32px; }
+      .top-line { flex-direction: column; }
+      h1 { font-size: 24px; }
+      .task-card { padding: 22px 18px; }
+      .letter-box { font-size: 16px; padding: 20px; }
+      .decor-arrow, .decor-circle { display: none; }
+    }
+</style>
+</head>
+
+<body>
+  <div class="page">
+    <header class="header">English7VPR</header>
+
+    <main class="main">
+      <div class="top-line">
+        <a href="reading.html" class="back-link">← Назад к вариантам</a>
+        <h1>Чтение. Вариант 2</h1>
+        <a href="index.html" class="back-link">На главную</a>
+      </div>
+
+      <section class="task-card">
+        <h2 class="task-title">The Swiss Alps</h2>
+
+        <p class="instruction">
+          Прочитайте текст. Для каждого предложения 1–5 выберите один правильный вариант ответа A, B или C.
+        </p>
+
+        <div class="letter-box">Hello Sam,
+
+I hope you&#x27;re having a good summer. I&#x27;m writing to you from a small village in the Swiss Alps. It&#x27;s completely different from our busy city life. My family and I are staying in a traditional wooden chalet. From my window, I can see green mountains with snow on their tops and hear the sound of cowbells from the fields below.
+
+The weather has been perfect for hiking. Yesterday we took a cable car up to one of the mountain peaks. The ride was a bit scary but the views were worth it! At the top, there was snow, and we had a snowball fight in the middle of August. The air is so fresh and clean. We also saw some marmots – they are funny, fat little animals that whistle when they are scared.
+
+In the afternoons, we often walk down to the village. It&#x27;s very small and pretty, with flowers on every balcony. We buy fresh bread and cheese from a local shop. Swiss chocolate is the best I&#x27;ve ever tasted! In the evenings, we play board games or read books because there&#x27;s no television in our chalet.
+
+Tomorrow we are going to go paragliding. I&#x27;m a bit nervous, but my brother says it&#x27;s an amazing feeling, like flying like a bird. Next week, we will move on to visit Geneva. I&#x27;m excited to see a big city again, but I will miss these quiet mountains.
+
+Take care,
+Tom</div>
+
+        
+        <div class="question-block">
+          <div class="question-title">1. Where is Tom spending his holidays?</div>
+          <div class="options">
+            
+            <label class="option" data-question="q1" data-option="A">
+              <input type="radio" name="q1" value="A"> A) In a big Swiss city.
+            </label>
+            <label class="option" data-question="q1" data-option="B">
+              <input type="radio" name="q1" value="B"> B) In the Swiss Alps.
+            </label>
+            <label class="option" data-question="q1" data-option="C">
+              <input type="radio" name="q1" value="C"> C) On a Swiss lake.
+            </label>
+          </div>
+        </div>
+        <div class="question-block">
+          <div class="question-title">2. What animal sounds can Tom hear from his window?</div>
+          <div class="options">
+            
+            <label class="option" data-question="q2" data-option="A">
+              <input type="radio" name="q2" value="A"> A) Birds singing.
+            </label>
+            <label class="option" data-question="q2" data-option="B">
+              <input type="radio" name="q2" value="B"> B) Cowbells.
+            </label>
+            <label class="option" data-question="q2" data-option="C">
+              <input type="radio" name="q2" value="C"> C) Marmots whistling.
+            </label>
+          </div>
+        </div>
+        <div class="question-block">
+          <div class="question-title">3. What did Tom and his family do yesterday?</div>
+          <div class="options">
+            
+            <label class="option" data-question="q3" data-option="A">
+              <input type="radio" name="q3" value="A"> A) They went paragliding.
+            </label>
+            <label class="option" data-question="q3" data-option="B">
+              <input type="radio" name="q3" value="B"> B) They took a cable car up a mountain.
+            </label>
+            <label class="option" data-question="q3" data-option="C">
+              <input type="radio" name="q3" value="C"> C) They visited Geneva.
+            </label>
+          </div>
+        </div>
+        <div class="question-block">
+          <div class="question-title">4. What do Tom and his family buy in the village shop?</div>
+          <div class="options">
+            
+            <label class="option" data-question="q4" data-option="A">
+              <input type="radio" name="q4" value="A"> A) Souvenirs and postcards.
+            </label>
+            <label class="option" data-question="q4" data-option="B">
+              <input type="radio" name="q4" value="B"> B) Fresh bread and cheese.
+            </label>
+            <label class="option" data-question="q4" data-option="C">
+              <input type="radio" name="q4" value="C"> C) Snowballs.
+            </label>
+          </div>
+        </div>
+        <div class="question-block">
+          <div class="question-title">5. How does Tom feel about his plan for tomorrow?</div>
+          <div class="options">
+            
+            <label class="option" data-question="q5" data-option="A">
+              <input type="radio" name="q5" value="A"> A) A bit nervous.
+            </label>
+            <label class="option" data-question="q5" data-option="B">
+              <input type="radio" name="q5" value="B"> B) Very bored.
+            </label>
+            <label class="option" data-question="q5" data-option="C">
+              <input type="radio" name="q5" value="C"> C) Not excited at all.
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <div class="finish-area">
+        <button class="finish-button" id="finishBtn">Завершить</button>
+      </div>
+
+      <div class="result" id="resultBox">
+        <h2>Результат</h2>
+        <div class="score" id="scoreText"></div>
+        <div class="answers-key">
+          Правильные ответы: <strong>1-B, 2-B, 3-B, 4-B, 5-A</strong>
+        </div>
+      </div>
+    </main>
+
+    <div class="decor-arrow"></div>
+    <div class="decor-circle"></div>
+  </div>
+
+  <script>
+    const correctAnswers = {
+      q1: "B",
+      q2: "B",
+      q3: "B",
+      q4: "B",
+      q5: "A"
+    };
+
+    const finishBtn = document.getElementById("finishBtn");
+    const resultBox = document.getElementById("resultBox");
+    const scoreText = document.getElementById("scoreText");
+
+    finishBtn.addEventListener("click", function () {
+      let score = 0;
+      const total = Object.keys(correctAnswers).length;
+
+      document.querySelectorAll(".option").forEach(function (option) {
+        option.classList.remove("correct", "wrong", "missed-correct");
+      });
+
+      for (let question in correctAnswers) {
+        const correctValue = correctAnswers[question];
+        const selectedInput = document.querySelector(`input[name="${question}"]:checked`);
+
+        const correctLabel = document.querySelector(
+          `.option[data-question="${question}"][data-option="${correctValue}"]`
+        );
+
+        if (selectedInput) {
+          const selectedLabel = selectedInput.closest(".option");
+
+          if (selectedInput.value === correctValue) {
+            score++;
+            selectedLabel.classList.add("correct");
+          } else {
+            selectedLabel.classList.add("wrong");
+            correctLabel.classList.add("missed-correct");
+          }
+        } else {
+          correctLabel.classList.add("missed-correct");
+        }
+      }
+
+      scoreText.textContent = `Ваш результат: ${score} из ${total}`;
+
+      resultBox.classList.add("show");
+      finishBtn.textContent = "Проверено";
+      finishBtn.disabled = true;
+
+      document.querySelectorAll("input").forEach(function (input) {
+        input.disabled = true;
+      });
+
+      resultBox.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+      });
+    });
+  </script>
+</body>
+</html>
