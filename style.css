@@ -1,0 +1,162 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+  color: #2b2b2b;
+  background: #e9e9e9;
+  overflow-x: hidden;
+}
+
+.page {
+  min-height: 100vh;
+  position: relative;
+  background: #e9e9e9;
+  border-top: 2px solid #b7c9d0;
+  border-bottom: 2px solid #b7c9d0;
+}
+
+.header {
+  height: 36px;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  font-size: 14px;
+  color: #1f2c33;
+  background: linear-gradient(#eeeeee, #dedede);
+  border-bottom: 2px solid #b7c9d0;
+}
+
+.main {
+  position: relative;
+  z-index: 2;
+}
+
+.main-home {
+  min-height: calc(100vh - 38px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px 90px;
+}
+
+.home-title {
+  margin: 0 0 85px;
+  font-size: 30px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+}
+
+.section-buttons {
+  display: flex;
+  gap: 80px;
+  justify-content: center;
+  align-items: center;
+}
+
+.section-button {
+  width: 230px;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  text-decoration: none;
+  color: #2e3a40;
+  font-size: 21px;
+  font-weight: 400;
+  text-transform: uppercase;
+
+  background: #b7c4ca;
+  border: 1.5px solid #111;
+
+  clip-path: polygon(
+    8% 0,
+    92% 0,
+    100% 50%,
+    92% 100%,
+    8% 100%,
+    0 50%
+  );
+
+  transition: 0.2s;
+}
+
+.section-button:hover {
+  background: #a7b8bf;
+  transform: translateY(-2px);
+}
+
+/* декоративная стрелка слева */
+
+.decor-arrow {
+  position: absolute;
+  width: 145px;
+  height: 50px;
+  border: 1px solid #8aa2ad;
+  opacity: 0.8;
+}
+
+.decor-arrow-left {
+  top: 76px;
+  left: -3px;
+  clip-path: polygon(
+    0 0,
+    82% 0,
+    100% 50%,
+    82% 100%,
+    0 100%
+  );
+}
+
+/* декоративный круг справа */
+
+.decor-circle {
+  position: absolute;
+  border: 1px solid #607985;
+  opacity: 0.8;
+}
+
+.decor-circle-right {
+  right: -90px;
+  bottom: 70px;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+}
+
+/* адаптация */
+
+@media (max-width: 900px) {
+  .section-buttons {
+    gap: 35px;
+  }
+
+  .section-button {
+    width: 210px;
+  }
+}
+
+@media (max-width: 720px) {
+  .home-title {
+    margin-bottom: 55px;
+    font-size: 27px;
+  }
+
+  .section-buttons {
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .section-button {
+    width: 240px;
+  }
+
+  .decor-circle-right {
+    display: none;
+  }
+}
